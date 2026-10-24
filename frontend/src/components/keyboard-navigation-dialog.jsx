@@ -27,49 +27,49 @@ export function KeyboardNavigationDialog(props) {
                     <tr>
                       <td class="help-dialog__key-cell">↑ or k</td>
                       <td class="help-dialog__desc-cell">
-                        Move focus to card above
+                        {props.t()('keyboard.shortcuts.navUp')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">↓ or j</td>
                       <td class="help-dialog__desc-cell">
-                        Move focus to card below
+                        {props.t()('keyboard.shortcuts.navDown')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">← or h</td>
                       <td class="help-dialog__desc-cell">
-                        Move focus to previous lane
+                        {props.t()('keyboard.shortcuts.lanePrev')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">→ or l</td>
                       <td class="help-dialog__desc-cell">
-                        Move focus to next lane
+                        {props.t()('keyboard.shortcuts.laneNext')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">Alt+↑</td>
                       <td class="help-dialog__desc-cell">
-                        Move card up within lane
+                        {props.t()('keyboard.shortcuts.cardUp')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">Alt+↓</td>
                       <td class="help-dialog__desc-cell">
-                        Move card down within lane
+                        {props.t()('keyboard.shortcuts.cardDown')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">Alt+←</td>
                       <td class="help-dialog__desc-cell">
-                        Move card to previous lane
+                        {props.t()('keyboard.shortcuts.cardToPrevLane')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">Alt+→</td>
                       <td class="help-dialog__desc-cell">
-                        Move card to next lane
+                        {props.t()('keyboard.shortcuts.cardToNextLane')}
                       </td>
                     </tr>
                   </tbody>
@@ -83,25 +83,25 @@ export function KeyboardNavigationDialog(props) {
                     <tr>
                       <td class="help-dialog__key-cell">Enter or e</td>
                       <td class="help-dialog__desc-cell">
-                        Open/edit focused card
+                        {props.t()('keyboard.shortcuts.openCard')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">n</td>
                       <td class="help-dialog__desc-cell">
-                        Create new card in current lane
+                        {props.t()('keyboard.shortcuts.newCard')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">r</td>
                       <td class="help-dialog__desc-cell">
-                        Rename focused card
+                        {props.t()('keyboard.shortcuts.renameCard')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">d</td>
                       <td class="help-dialog__desc-cell">
-                        Delete focused card (with confirmation)
+                        {props.t()('keyboard.shortcuts.deleteCard')}
                       </td>
                     </tr>
                   </tbody>
@@ -115,13 +115,13 @@ export function KeyboardNavigationDialog(props) {
                     <tr>
                       <td class="help-dialog__key-cell">Esc</td>
                       <td class="help-dialog__desc-cell">
-                        Clear focus / Close dialog
+                        {props.t()('keyboard.shortcuts.esc')}
                       </td>
                     </tr>
                     <tr>
                       <td class="help-dialog__key-cell">?</td>
                       <td class="help-dialog__desc-cell">
-                        Show this help dialog
+                        {props.t()('keyboard.shortcuts.help')}
                       </td>
                     </tr>
                   </tbody>

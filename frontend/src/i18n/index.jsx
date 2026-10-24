@@ -4,11 +4,12 @@ import { makePersisted } from '@solid-primitives/storage';
 import { flatten, resolveTemplate, translator } from '@solid-primitives/i18n';
 
 // Supported locales
-const SUPPORTED = ['en', 'es'];
+const SUPPORTED = ['en', 'es', 'zh'];
 
 // Dictionaries (imported from separate files or defined here)
 import en from './locales/en.js';
 import es from './locales/es.js';
+import zh from './locales/zh.js';
 
 /**
  * Detects the user's preferred locale.
@@ -35,7 +36,7 @@ const [locale, setLocale] = makePersisted(
 );
 
 // Create memoized flattened dictionary based on current locale
-const dict = createMemo(() => flatten(locale() === 'es' ? es : en));
+const dict = createMemo(() => flatten(locale() === 'es' ? es : locale() === 'zh' ? zh : en));
 
 // Translation function that uses the current dict
 const t = createMemo(() => translator(dict, resolveTemplate));

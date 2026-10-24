@@ -28,5 +28,13 @@ export default {
 		mustHaveName: "Name is required", hiddenByDot: "Hidden by dot", duplicateName: "Duplicate name",
 		forbiddenChars: "Forbidden characters", noMdExtension: "No .md extension", prohibitedName: "Prohibited name",
 	},
-	keyboard: { title: "Keyboard Shortcuts", sections: { navigation: "Navigation", cardActions: "Card actions", general: "General" }, shortcuts: {} },
+	keyboard: { title: "Keyboard Shortcuts", sections: { navigation: "Navigation", cardActions: "Card actions", general: "General" }, shortcuts: {
+		navUp: "Move focus to card above", navDown: "Move focus to card below",
+		lanePrev: "Move focus to previous lane", laneNext: "Move focus to next lane",
+		cardUp: "Move card up within lane", cardDown: "Move card down within lane",
+		cardToPrevLane: "Move card to previous lane", cardToNextLane: "Move card to next lane",
+		openCard: "Open/edit focused card", newCard: "Create new card in current lane",
+		renameCard: "Rename focused card", deleteCard: "Delete focused card (with confirmation)",
+		esc: "Clear focus / Close dialog", help: "Show this help dialog",
+	} },
 }

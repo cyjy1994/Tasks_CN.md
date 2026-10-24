@@ -92,6 +92,7 @@ export function Header(props) {
         <select onChange={props.onLocaleChange} value={props.locale}>
           <option value="en">English</option>
           <option value="es">Español</option>
+          <option value="zh">中文</option>
         </select>
       </div>
     </header>

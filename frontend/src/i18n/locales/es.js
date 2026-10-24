@@ -29,5 +29,13 @@ export default {
 		mustHaveName: "El nombre es obligatorio", hiddenByDot: "Oculto por punto", duplicateName: "Nombre duplicado",
 		forbiddenChars: "Caracteres prohibidos", noMdExtension: "Sin extensión .md", prohibitedName: "Nombre prohibido",
 	},
-	keyboard: { title: "Atajos de teclado", sections: { navigation: "Navegación", cardActions: "Acciones de tarjeta", general: "General" }, shortcuts: {} },
+	keyboard: { title: "Atajos de teclado", sections: { navigation: "Navegación", cardActions: "Acciones de tarjeta", general: "General" }, shortcuts: {
+		navUp: "Mover el foco a la tarjeta de arriba", navDown: "Mover el foco a la tarjeta de abajo",
+		lanePrev: "Mover el foco a la columna anterior", laneNext: "Mover el foco a la columna siguiente",
+		cardUp: "Mover la tarjeta hacia arriba dentro de la columna", cardDown: "Mover la tarjeta hacia abajo dentro de la columna",
+		cardToPrevLane: "Mover la tarjeta a la columna anterior", cardToNextLane: "Mover la tarjeta a la columna siguiente",
+		openCard: "Abrir/editar tarjeta enfocada", newCard: "Crear nueva tarjeta en la columna actual",
+		renameCard: "Renombrar tarjeta enfocada", deleteCard: "Eliminar tarjeta enfocada (con confirmación)",
+		esc: "Limpiar foco / Cerrar diálogo", help: "Mostrar este diálogo de ayuda",
+	} },
 }
