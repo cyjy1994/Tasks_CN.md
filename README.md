@@ -1,25 +1,25 @@
 # ![logo](public/logo.png) Tasks.md
-A self-hosted, Markdown file based task management board.
+一个自托管、基于 Markdown 文件的任务管理看板。
 
 
 ![Demo](./public/demo.gif)
 
-## ⭐ Features
-- Create cards, lanes and tags in a modern and responsive interface;
-- Write cards as Markdown files;
-- Easy to install with a single Docker image;
-- Light and dark themes synced with operating system settings;
-- Heavily customizable with 3 default color themes ([Adwaita](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html), [Nord](https://www.nordtheme.com/) and [Catppuccin](https://github.com/catppuccin/catppuccin));
-- Support for subpath based reverse-proxy with an environment variable for base path;
-- Can be installed as PWA.
-- Multilingual support, with locale auto-detected from browser and persisted per user;
+## ⭐ 特性
+- 在现代且响应式的界面中创建卡片、通道和标签；
+- 卡片以 Markdown 文件形式保存；
+- 只需一个 Docker 镜像即可轻松安装；
+- 浅色/深色主题与操作系统设置同步；
+- 高度可定制，自带 3 套默认配色主题（[Adwaita](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html)、[Nord](https://www.nordtheme.com/) 和 [Catppuccin](https://github.com/catppuccin/catppuccin)）；
+- 支持基于子路径的反向代理，通过环境变量设置基础路径；
+- 可安装为 PWA；
+- 多语言支持，自动检测浏览器语言，并按用户持久保存。
 
-## Upgrade from 2.X.X to 3.X.X
-If you're running a docker container with version 2 of Tasks.md and want to upgrade it to version 3, please follow up [those instructions](/migration-guide.md) as it requires some tweeks for it to work properly.
+## 从 2.X.X 升级到 3.X.X
+如果你正在运行第 2 版 Tasks.md 的 Docker 容器并希望升级到第 3 版，请按照[这些说明](/migration-guide.md)操作，因为需要做一些调整才能正常工作。
 
-## 🐋 Installation
+## 🐋 安装
 ### Docker
-Paste this command:
+粘贴以下命令：
 ```
 docker run -d \
   --name tasks.md \
@@ -34,11 +34,11 @@ docker run -d \
   --restart unless-stopped \
   baldissaramatheus/tasks.md
 ```
-Remove the environment variables you don't want to keep (all of them are optional, PUID and PGID are recommended), replace `/path/to/something` with directories that exist in your filesystem and then execute it. The environment variables are the following:
-- `PUID` and `PGID`: User ID and group ID that owns the files and directories. On linux distros you can find your user's UID and GID running `id` in the terminal, but it's usually `1000` for both variables. If no value is assigned for those variables, docker will create all the files and directories as root. You can read more about it [here](https://docs.linuxserver.io/general/understanding-puid-and-pgid/).
-- `TITLE`: A given name that shows below the header and in the browser tab when accessing root path;
-- `BASE_PATH`: Base path in the url. Use this variable if you are going to run the app under a subpath based reverse-proxy. Be aware that PWA does not work when BASE_PATH is set with anything other than "/";
-- `LOCAL_IMAGES_CLEANUP_INTERVAL`: After a given interval the app will remove all local images that aren't present in any task. This variable control the duration in minutes of this interval. The default value is 1440 (exactly 24h). Set it as 0 to disable it.
+删除你不需要的环境变量（它们都是可选的，建议保留 `PUID` 和 `PGID`），把 `/path/to/something` 替换为你文件系统中实际存在的目录，然后执行。环境变量说明如下：
+- `PUID` 和 `PGID`：拥有这些文件和目录的用户 ID 与组 ID。在 Linux 发行版中，你可以在终端运行 `id` 查看自己用户的 UID 和 GID，通常两者都是 `1000`。如果不给这两个变量赋值，Docker 会以 root 身份创建所有文件和目录。更多信息见[这里](https://docs.linuxserver.io/general/understanding-puid-and-pgid/)；
+- `TITLE`：访问根路径时，显示在页头下方以及浏览器标签页中的名称；
+- `BASE_PATH`：URL 中的基础路径。如果你要通过基于子路径的反向代理运行应用，就使用这个变量。注意：`BASE_PATH` 设为 "/" 以外的值时 PWA 无法工作；
+- `LOCAL_IMAGES_CLEANUP_INTERVAL`：每隔一定时间，应用会删除所有未被任何任务引用的本地图片。该变量以分钟为单位控制清理间隔，默认值为 1440（正好 24 小时）。设为 0 可禁用清理。
 
 
 ### docker-compose
@@ -58,51 +58,50 @@ services:
     ports:
       - 8080:8080
 ```
-Use the Docker section above as reference for setting up variables and volumes.
+变量和卷的配置请参考上面的 Docker 小节。
 
 
-### Source code
-Clone the repository with `git clone --recursive`, open a terminal instance in the `/frontend` directory and another one in the `/backend` directory, then in both of them run `npm install` and `npm start`. The env variables are set in `package.json` file for both directories, and are the same ones listed in the Docker section above, plus `CONFIG_DIR` and `TASKS_DIR` for config and tasks directories paths.
+### 源码
+用 `git clone --recursive` 克隆仓库，分别在 `/frontend` 和 `/backend` 目录各开一个终端，然后在两个目录中都运行 `npm install` 和 `npm start`。环境变量在两个目录的 `package.json` 文件中设置，与上面 Docker 小节列出的相同，另外还有用于配置目录和任务目录路径的 `CONFIG_DIR` 和 `TASKS_DIR`。
 
-## 🎨 Customize
-You can customize the application CSS through the `custom.css` (within `/config` directory if you're on Docker). You can replace the default `adwaita` theme with `nord` or `catppuccin`, or you can make your own changes. The easieste way to customize the application is to use the existing color variables (detailed [below](#color-variables)), but if you want to make changes other than color replacements you can use [index.css](frontend/src/stylesheets/index.css) file as a reference.
+## 🎨 自定义
+你可以通过 `custom.css`（Docker 部署时位于 `/config` 目录内）自定义应用的 CSS。你可以把默认的 `adwaita` 主题换成 `nord` 或 `catppuccin`，也可以自行修改。自定义应用最简单的方式是使用现有的颜色变量（详见[下文](#颜色变量)）；如果想做颜色替换以外的修改，可以参考 [index.css](frontend/src/stylesheets/index.css) 文件。
 
-### Color variables
-- `color-accent`: Highlight color;
-- `color-foreground`: Anything that goes against background that needs contrast, text color;
-- `color-background-1`: Main background color, used as background color for the app main page;
-- `color-background-2`: 1 layer above main background color, used as background color for editor code-block, dialog, popovers, lanes and header;
-- `color-background-3`: 2 layer above main background color, used as background color for cards;
-- `color-background-4`: 3 layer above main background color, used as background color for buttons and inputs;
-- `color-alt-1`: Used as tag color, input error and past due date;
-- `color-alt-2`: Used as tag color;
-- `color-alt-3`: Used as tag color and due date when it's current date;
-- `color-alt-4`: Used as tag color;
-- `color-alt-5`: Used as tag color;
-- `color-alt-6`: Used as tag color;
-- `color-alt-7`: Used as tag color;
+### 颜色变量
+- `color-accent`：高亮颜色；
+- `color-foreground`：与背景形成对比所需的前景元素，即文字颜色；
+- `color-background-1`：主背景色，用作应用主页面的背景；
+- `color-background-2`：比主背景高 1 层，用作编辑器代码块、对话框、弹出框、通道和页头的背景；
+- `color-background-3`：比主背景高 2 层，用作卡片的背景；
+- `color-background-4`：比主背景高 3 层，用作按钮和输入框的背景；
+- `color-alt-1`：用作标签颜色、输入错误提示和已过期日期；
+- `color-alt-2`：用作标签颜色；
+- `color-alt-3`：用作标签颜色和当天日期；
+- `color-alt-4`：用作标签颜色；
+- `color-alt-5`：用作标签颜色；
+- `color-alt-6`：用作标签颜色；
+- `color-alt-7`：用作标签颜色；
 
 
-## 📁 Files structure
-The way directories and files are organized in Tasks.md is quite simple. Every lane you add within the app is a directory in your filesystem and every task is file.
+## 📁 文件结构
+Tasks.md 中目录和文件的组织方式非常简单。你在应用里添加的每个通道（lane）对应文件系统中的一个目录，每个任务对应一个文件。
 
-#### So if your tasks look like this:
-![Screenshot of the app. There are 3 lanes, Backlog, Sprint and Done. Within Done there is one file named "Something something"](/public/directories-organization-1.png)
+#### 如果你的任务看板长这样：
+![应用截图。共有 3 个通道：Backlog、Sprint 和 Done，其中 Done 里有一个名为 "Something something" 的文件](/public/directories-organization-1.png)
 
-#### Your files should look like this:
-![Screenshot of a file explorer showing 3 folders: Backlog, Sprint and Done](/public/directories-organization-2.png)
-![Screenshot of file explorer within a folder called "Done", containing one file named "Something something"](/public/directories-organization-3.png)
+#### 那么你的文件应该是这样：
+![文件管理器截图，显示 3 个文件夹：Backlog、Sprint 和 Done](/public/directories-organization-2.png)
+![文件管理器截图，显示名为 "Done" 的文件夹，其中包含一个名为 "Something something" 的文件](/public/directories-organization-3.png)
 
-Sub-directories can also be opened as their own projects. In this example, by opening the app under `/backlog` path it will treat this directory as a different project, with its own lanes and tasks.
+子目录也可以作为独立项目打开。在上面的例子中，通过 `/backlog` 路径打开应用时，会把该目录当作一个不同的项目，拥有自己的通道和任务。
 
-More details (and it how it looks within Obsidian) can be found [here](https://github.com/BaldissaraMatheus/Tasks.md/issues/49).
+更多细节（以及它在 Obsidian 中的样子）见[这里](https://github.com/BaldissaraMatheus/Tasks.md/issues/49)。
 
-## 💻 Technology stack
-With the goal of having a good mix of performance and maintainability, the application was built with [SolidJS](https://github.com/solidjs/solid) and [Koa](https://github.com/koajs/koa). It also uses [Stacks-Editor](https://github.com/StackExchange/Stacks-Editor) for text editing and [serve-static](https://github.com/expressjs/serve-static) to serve the css files as-is.
+## 💻 技术栈
+为了在性能与可维护性之间取得良好平衡，应用使用 [SolidJS](https://github.com/solidjs/solid) 和 [Koa](https://github.com/koajs/koa) 构建；文本编辑使用 [Stacks-Editor](https://github.com/StackExchange/Stacks-Editor)，并使用 [serve-static](https://github.com/expressjs/serve-static) 原样提供 CSS 文件。
 
-## 🔨 Contribute
-This is a low maintenance project. The scope of features and support are purposefully kept narrow to ensure longer term maintenance is viable. Issues and PRs raised for bugs and quality of life improvements are perfectly fine, just don’t do that for features that significantly increase the scope of the project.
+## 🔨 参与贡献
+这是一个低维护项目。功能和支持的范围被刻意保持精简，以确保长期维护可行。提交修复 bug 和改善体验的 Issue 与 PR 完全没问题，但请不要提交会显著扩大项目范围的功能。
 
-### Sponsor
-If you like the project, consider [becoming a sponsor](https://github.com/sponsors/BaldissaraMatheus) with a one-time donation!
-
+### 赞助
+如果你喜欢这个项目，可以考虑一次性捐款[成为赞助者](https://github.com/sponsors/BaldissaraMatheus)！
