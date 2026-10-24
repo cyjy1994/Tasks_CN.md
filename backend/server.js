@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const uuid = require("uuid");
 const Koa = require("koa");
 const Router = require("@koa/router");
@@ -259,7 +260,7 @@ app.use(
 );
 
 app.use(mount(`${BASE_PATH}/_api`, router.routes()));
-app.use(mount((`${BASE_PATH || '/'}`), (ctx, next) => {
+app.use(mount((`${BASE_PATH || '/'}`), async (ctx, next) => {
   let middleware = serve('static')
   if (/stylesheets\/(.*).css$/.test(ctx.request.url)) {
     const fileName = ctx.request.url.split('/stylesheets').at(-1);
@@ -277,9 +278,24 @@ app.use(mount((`${BASE_PATH || '/'}`), (ctx, next) => {
     const fileName = ctx.request.url.split('/').at(-1);
     ctx.request.url = `/assets/${fileName}`
   }
-  // default to index.html
+  // default to index.html (SPA fallback), but serve real static files first
   else {
-    ctx.request.url = '/'
+    const reqUrl = ctx.request.url.split('?')[0];
+    const isStaticFile = /\.(js|css|webmanifest|svg|png|ico|woff2?)$/.test(reqUrl) && !reqUrl.includes('..');
+    if (!isStaticFile) {
+      ctx.request.url = '/';
+    } else {
+      const staticRoot = path.resolve('static');
+      const filePath = path.join(staticRoot, reqUrl);
+      try {
+        const st = await fs.promises.stat(filePath);
+        if (!st.isFile()) {
+          ctx.request.url = '/';
+        }
+      } catch (err) {
+        ctx.request.url = '/';
+      }
+    }
   }
   return middleware(ctx, next)
 }));
